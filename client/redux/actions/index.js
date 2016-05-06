@@ -10,7 +10,7 @@ export function initApp() {
 function receiveActivities(activities) {
   return {
     type: types.RECEIVE_ACTIVITIES,
-    activities: activities
+    activities
   };
 }
 

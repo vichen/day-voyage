@@ -37,7 +37,7 @@ ActivitiesContainer.propTypes = {
 
 function mapStateToProps(state) {
   return {
-    activities: getActivities(state.activities)
+    activities: state.activities
   }
 }
 
