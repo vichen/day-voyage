@@ -8,13 +8,11 @@ export function activities(state = [], action) {
     case RECEIVE_ACTIVITIES:
       return action.activities
     case ADD_TO_BUILDER:
-      return Object.assign({}, state, {
-        added: true
-      })
+      action.activity.added = true
+      return action.activity
     case DELETE_FROM_BUILDER:
-      return Object.assign({}, state, {
-        added: false
-      })
+      action.activity.added = false
+      return action.activity
     default:
       return state
   }

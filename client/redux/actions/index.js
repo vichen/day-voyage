@@ -69,17 +69,17 @@ export function getAllActivities(query, router) {
     .catch(e => console.log(e));
 }
 
-export function addToBuilder(activityId) {
+export function addToBuilder(activity) {
   return { 
     type: types.ADD_TO_BUILDER, 
-    activityId
+    activity
   };
 }
 
-export function deleteFromBuilder(activityId) {
+export function deleteFromBuilder(activity) {
   return {
     type: types.DELETE_FROM_BUILDER, 
-    activityId
+    activity
   };
 }
 

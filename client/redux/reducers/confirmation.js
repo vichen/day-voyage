@@ -7,6 +7,10 @@ import {
 
 export default function confirmation(state = [], action) {
   switch (action.type) {
+    case ADD_TO_BUILDER:
+      var newState = state.slice()
+      newState.concat(action.activity)
+      return newState
     case CONFIRM_REQUEST:
       return action.activities
     case SAVE_TO_DB:
