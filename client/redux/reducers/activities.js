@@ -57,6 +57,6 @@ export function getActivity(state, title) {
   return state.byId[title]
 }
 
-export function getVisibleActivities(state) {
+export function getActivities(state) {
   return state.visibleIds.map(title => getActivity(state, title))
 }
