@@ -1,7 +1,7 @@
 import { combineReducers } from 'redux';
 import { routerReducer } from 'react-router-redux';
 import { default as planBuilder, getQuantity, getAddedIds, deleteActivity } from './planBuilder';
-import { default as directions, getDirections } from './map';
+import { directions } from './map';
 import { default as activities, getActivity } from './activities';
 import { default as confirmation, saveToDb } from './confirmation';
 

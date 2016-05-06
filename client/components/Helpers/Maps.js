@@ -1,22 +1,16 @@
 import * as React from 'react';
 import {GoogleMapLoader, GoogleMap, Marker, DirectionsRenderer} from "react-google-maps";
 import { getConfirmActivities } from '../../redux/reducers';
-import { getDirections } from '../../redux/reducers/map.js';
+import { directions } from '../../redux/reducers/map.js';
 
 import { changingRoutes } from '../../redux/actions';
 import { connect } from 'react-redux';
 
 
 export default class Maps extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      directions: null,
-    };
-  }
 
   componentDidMount() {
-    const { activities, directions } = this.props;
+    const { activities } = this.props;
 
     changingRoutes(activities);
     // if (this.props.size === "large") {
@@ -65,9 +59,7 @@ export default class Maps extends React.Component {
         travelMode: google.maps.TravelMode.WALKING,
       }, (result, status) => {
         if (status === google.maps.DirectionsStatus.OK) {
-          this.setState({
-            directions: result
-          });
+          console.log(result);
         } else {
           console.error(`error fetching directions ${ result }`);
         }
@@ -75,6 +67,9 @@ export default class Maps extends React.Component {
   }
 
   render() {
+    const { directions } = this.props;
+    console.log("directions in Maps component", directions);
+
     var markers = [{position: {lat: parseFloat(this.props.lat), lng: parseFloat(this.props.long) }, title: this.props.title }];
 
     var centerLat = 37.7749;
@@ -107,7 +102,7 @@ export default class Maps extends React.Component {
                         {...marker} />
                     );
                   })}
-                  {this.state.directions ? <DirectionsRenderer directions={directions} /> : null}
+                  {directions ? <DirectionsRenderer directions={directions} /> : null}
               </GoogleMap>
             }
           />
@@ -121,7 +116,7 @@ const mapStateToProps = (state) => {
   console.log(state);
   return {
     activities: getConfirmActivities(state.confirmation),
-    directions: getDirections(state)
+    directions: directions(state.directions, {type: 'RECEIVE_ROUTES'})
   }
 }
 
