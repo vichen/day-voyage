@@ -12,13 +12,13 @@ const initialState = {
 function addedIds(state = initialState.addedIds, action) {
   switch (action.type) {
     case ADD_TO_BUILDER:
-      if (state.indexOf(action.activityId) !== -1) {
+      if (state.indexOf(action.activity) !== -1) {
         return state
       }
-      return [ ...state, action.activityId ]
+      return [ ...state, action.activity ]
     case DELETE_FROM_BUILDER:
       var newState = state.slice();
-      var activityIndex = state.indexOf(action.activityId);
+      var activityIndex = state.indexOf(action.activity);
       newState.splice(activityIndex, 1);
       return newState;
     default:

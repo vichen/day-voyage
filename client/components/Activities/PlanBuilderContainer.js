@@ -26,7 +26,7 @@ class PlanBuilderContainer extends Component {
           <PlanBuilderItem
             key={activity.title}
             activity={activity}
-            onDeleteFromBuilderClicked={() => this.props.deleteFromBuilder(activity.title)}/>
+            onDeleteFromBuilderClicked={() => this.props.deleteFromBuilder(activity)}/>
         )}
         </div>
       </div>
