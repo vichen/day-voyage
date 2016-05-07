@@ -57,7 +57,7 @@ PlanBuilderContainer.propTypes = {
 
 const mapStateToProps = (state) => {
   return {
-    activities: getPlannerActivities(state),
+    activities: state.planBuilder.addedIds,
   }
 }
 
