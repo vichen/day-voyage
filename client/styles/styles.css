@@ -71,3 +71,10 @@ body {
 .geosuggest-item--active:focus {
   background: #ccc;
 }
+
+/** 
+* Get rid of google logo on search box
+*/
+.pac-container {
+  display: none !important; 
+}

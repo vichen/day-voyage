@@ -28,9 +28,9 @@ function changeRoutes(route) {
   };
 }
 
-export function getAllActivities(query, router) {
+export function getAllActivities(query, city, router) {
 
-    fetch(`/api/yelpSearch?city=${query.city}&category=${query.category}`, {
+    fetch(`https://maps.googleapis.com/maps/api/place/textsearch/json?key=AIzaSyAINLBCwu5b4FuomQUqor-jegNCF-l2w3c&query=${query}%20in%20${city}`, {
       method: 'GET'
     })
     .then((results) => results.json())
