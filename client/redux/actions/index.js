@@ -10,7 +10,7 @@ export function initApp() {
 function receiveActivities(activities) {
   return {
     type: types.RECEIVE_ACTIVITIES,
-    activities
+    activities: activities
   };
 }
 
@@ -30,7 +30,7 @@ function changeRoutes(route) {
 
 export function getAllActivities(query, city, router) {
 
-    fetch(`https://maps.googleapis.com/maps/api/place/textsearch/json?key=AIzaSyAINLBCwu5b4FuomQUqor-jegNCF-l2w3c&query=${query}%20in%20${city}`, {
+    fetch(`/api/yelpSearch?city=${city}&category=${query}`, {
       method: 'GET'
     })
     .then((results) => results.json())
@@ -40,8 +40,8 @@ export function getAllActivities(query, city, router) {
 
          // transformed.yelpRating = activity.rating;
          transformed.title = activity.name;
-         transformed.category = activity.categories[0];
-         transformed.desc = activity.snippet_text;
+         transformed.categories = activity.categories;
+         transformed.desc = '';
          transformed.lat = activity.location.coordinate.latitude;
          transformed.long = activity.location.coordinate.longitude;
          transformed.address = activity.location.address[0];
@@ -49,19 +49,11 @@ export function getAllActivities(query, city, router) {
          transformed.state = activity.location.state_code;
          transformed.neighborhood = activity.location.neighborhoods;
          transformed.added = false;
-         // TODO: cannot figure out how to pull a single item from neighborhood array, will have to be handled on client side
 
          return transformed;
        }))
     .then((yelpData) => {
-      console.log('yelpData: ', yelpData);
-      return fetch('https://sleepy-crag-32675.herokuapp.com/v1/activities', {
-        method: 'GET'
-      })
-      .then((dbResults) => dbResults.json())
-      .then((dbJson) => dbJson.data.map((item) => Object.assign(item, {added: false})))
-      .then((dbArray) => dbArray.concat(yelpData))
-      .then((dbActivities) => store.dispatch(receiveActivities(dbActivities)))
+      store.dispatch(receiveActivities(yelpData))
     })
     .then(() => {
       router.push('/activities');
@@ -69,17 +61,17 @@ export function getAllActivities(query, city, router) {
     .catch(e => console.log(e));
 }
 
-export function addToBuilder(activity) {
+export function addToBuilder(activityId) {
   return { 
     type: types.ADD_TO_BUILDER, 
-    activity
+    activityId
   };
 }
 
-export function deleteFromBuilder(activity) {
+export function deleteFromBuilder(activityId) {
   return {
     type: types.DELETE_FROM_BUILDER, 
-    activity
+    activityId
   };
 }
 
@@ -115,10 +107,6 @@ export function saveToDb(activities) {
 export function changingRoutes(activities) {
   const DirectionsService = new google.maps.DirectionsService();
 
-  if (activities.length === 0) {
-    return store.dispatch(changeRoutes(null));
-  }
-
   var places = activities.map(function(item) {
     return {position: {location: {lat: parseFloat(item.lat), lng: parseFloat(item.long) }}, title: item.title, address: [item.address, item.city, item.state].join(', ') };
   });
@@ -128,18 +116,22 @@ export function changingRoutes(activities) {
       origin: places[0].address,
       destination: places[places.length-1].address,
       waypoints: places.slice(1,-1).map((item) => item.position),
-      optimizeWaypoints: false,
+      optimizeWaypoints: true,
       travelMode: google.maps.TravelMode.WALKING,
     }, (result, status) => {
       if (status === google.maps.DirectionsStatus.OK) {
         return store.dispatch(changeRoutes(result));
       } else {
         console.error(`error fetching directions ${ result }`);
-        return store.dispatch(changeRoutes(null));
-
-        
       }
   });
 
 
+
+
+
+  // return { 
+  //   type: types.CHANGE_ROUTES, 
+  //   activityId
+  // };
 }

@@ -32,23 +32,27 @@ export default class Search extends Component {
     this.setState({query: event.target.value});
   }
 
-  handleCity(event, index, value){
-    this.setState({city: value});
+  handleCity(event){
+    this.setState({city: event.target.value});
   }
 
   render() {
-    this.initAutocomplete();
     return (
       <div className="col-sm-12">
         <form style={{textAlign: "center", marginTop: 25}} className="commentForm" onSubmit={this.searchActivities.bind(this)}>
           <h5>Search Category: </h5>
           <TextField
-            id="search-box"
+            id="search-query-box"
             type="text"
-            value={this.state.value}
-            placeholder="e.g. Hiking"
+            placeholder="Sight-seeing"
             style={{marginBottom: 25}}
             onChange={this.handleQuery.bind(this)} />
+          <TextField
+            id="search-city-box"
+            type="text"
+            placeholder="San Francisco"
+            style={{marginBottom: 25}}
+            onChange={this.handleCity.bind(this)} />
           <FlatButton label="Search" type="submit"/>
         </form>
       </div>
