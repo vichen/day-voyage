@@ -16,8 +16,9 @@ export class DashboardView extends React.Component {
     return (
       <div>
         <div>
-          <h1>{auth.username}'s Profile</h1>
+          <h1>Welcome, {auth.username}</h1>
           <h3>Itineraries</h3>
+          {dashboard.length > 0 ? '' : 'You don\'t have any itineraries, create one now!'}
           <Card>
           {dashboard.map((item, index) => {
             return <DashboardPlanItem
