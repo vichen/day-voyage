@@ -14,6 +14,8 @@ import CreateActivity from '../components/CreateActivity';
 import Maps from '../components/Maps';
 import FlatButton from 'material-ui/FlatButton';
 import { Card, CardText } from 'material-ui/Card';
+import Checkbox from 'material-ui/Checkbox';
+import EditorAttachMoney from 'material-ui/svg-icons/editor/attach-money';
 import { isLoggedIn } from '../utils';
 import TextField from 'material-ui/TextField';
 
@@ -22,7 +24,8 @@ class PlanBuilderContainer extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      modalOpen: false
+      modalOpen: false,
+      budgeting: false
     };
   }
 
@@ -52,6 +55,11 @@ class PlanBuilderContainer extends Component {
     this.props.receiveBudget(event.target.value)
   }
 
+  checkBudgeting() {
+    this.setState({budgeting: !this.state.budgeting})
+    console.log(this.state.budgeting);
+  }
+
   getTotalPrice() {
     var total = 0;
     this.props.planBuilder.forEach(activity => {
@@ -65,15 +73,26 @@ class PlanBuilderContainer extends Component {
     const { planBuilder, activities, auth, data } = this.props;
     const hasActivities = planBuilder.length > 0;
     const alphabetOrder = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    const budgetField = this.state.budgeting ?
+    <div>
+      <CardText>
+        Budget: $<TextField
+         type="number"
+         defaultValue={this.props.data.budget}
+         onChange={this.handleBudget.bind(this)}/><br />
+      Current cost so far: 
+      <span style={
+        this.getTotalPrice() <= data.budget ?
+        {color: '#009900'}:
+        {color: '#F44336'}}> ${this.getTotalPrice()}</span>
+      </CardText>
+    </div> : ''
+
+
     const nodes = !hasActivities ?
       <em>Start building your itinerary here!</em> :
       <div>
         <div>
-        Current cost so far: 
-        <span style={
-          this.getTotalPrice() <= data.budget ?
-          {color: '#009900'}:
-          {color: '#F44336'}}> ${this.getTotalPrice()}</span>
         {planBuilder.map((activity, index) =>
           <PlanBuilderItem
             key={index}
@@ -111,13 +130,16 @@ class PlanBuilderContainer extends Component {
             onClick={this.openCreate.bind(this)} />
           <FlatButton
             label="Clear All"
-            onClick={() => planBuilder.forEach(element => this.props.deleteFromBuilder(element))} /><br />
-          <CardText>
-            Budget: $<TextField
-             type="number"
-             defaultValue={this.props.data.budget}
-             onChange={this.handleBudget.bind(this)}/><br />
-          </CardText>
+            onClick={() => planBuilder.forEach(element => this.props.deleteFromBuilder(element))} />
+          <Checkbox
+            checkedIcon={<EditorAttachMoney />}
+            iconStyle={{color: "#00cc00"}}
+            uncheckedIcon={<EditorAttachMoney />}
+            label="Budgeting"
+            onCheck={this.checkBudgeting.bind(this)}
+          />
+            <br />
+          {budgetField}
           {nodes}
           <div style={{marginBottom: 10}}>
             <FlatButton

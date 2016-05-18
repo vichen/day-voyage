@@ -21,6 +21,8 @@ import FlatButton from 'material-ui/FlatButton';
 import Dialog from 'material-ui/Dialog';
 import {Tabs, Tab} from 'material-ui/Tabs';
 import Snackbar from 'material-ui/Snackbar';
+import Checkbox from 'material-ui/Checkbox';
+import EditorAttachMoney from 'material-ui/svg-icons/editor/attach-money';
 
 var shortid = require('shortid');
 
@@ -33,7 +35,8 @@ export class ConfirmContainer extends Component {
       modalOpen: false,
       snackbar: false,
       message: '',
-      plan_id: null
+      plan_id: null,
+      budgeting: this.props.data.budget > 0 ? true : false
     };
   }
 
@@ -98,9 +101,30 @@ export class ConfirmContainer extends Component {
     this.props.receiveBudget(event.target.value)
   }
 
+  checkBudgeting() {
+    this.setState({budgeting: !this.state.budgeting})
+    console.log(this.state.budgeting);
+  }
+
   render() {
     const { planBuilder, auth, data } = this.props;
     const alphabetOrder = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+
+    const budgetField = this.state.budgeting ?
+      <div>
+        <CardText>
+          Budget: $<TextField
+           type="number"
+           defaultValue={this.props.data.budget}
+           onChange={this.handleBudget.bind(this)}/><br />
+        Current cost so far: 
+        <span style={
+          this.getTotalPrice() <= data.budget ?
+          {color: '#009900'}:
+          {color: '#F44336'}}> ${this.getTotalPrice()}</span>
+        </CardText>
+      </div> : ''
+
 
     return (
       <Card>
@@ -108,17 +132,14 @@ export class ConfirmContainer extends Component {
           hintText="Name Your Itinerary"
           onChange={this.handleTitle.bind(this)}/><br />
         <div>
-        <CardText>
-          Budget: $<TextField
-           type="number"
-           defaultValue={this.props.data.budget}
-           onChange={this.handleBudget.bind(this)}/><br />
-        </CardText>
-        Current cost so far: 
-                <span style={
-                  this.getTotalPrice() <= data.budget ?
-                  {color: '#009900'}:
-                  {color: '#F44336'}}> ${this.getTotalPrice()}</span>
+        <Checkbox
+          checkedIcon={<EditorAttachMoney />}
+          iconStyle={{color: "#00cc00"}}
+          uncheckedIcon={<EditorAttachMoney />}
+          label="Budgeting"
+          onCheck={this.checkBudgeting.bind(this)}
+        />
+        {budgetField}
         {planBuilder.map((activity, index) => 
           <ConfirmItem
             key={index}
