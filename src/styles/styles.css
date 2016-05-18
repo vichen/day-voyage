@@ -51,7 +51,18 @@ body {
   color: #424242;
 } 
 .home .search__call-to-action {
+  /* show large call-to-action button only in home page */
   display: flex;
+}
+.home .search-form__inputs .search-btn { 
+  /* hide inline search button when in home page */
+  margin:  0 !important;
+  padding: 0 !important;
+  width:  0 !important;
+  height: 0 !important;
+  min-width:  0 !important;
+  min-height: 0 !important;
+  opacity: 0 !important;
 }
 
 /**
@@ -96,6 +107,21 @@ body {
 .search__call-to-action .search-btn {
   min-width: 250px;
 }
+
+/**
+ * Activities Page
+ */
+.activity__top-actions {
+  display: flex;
+}
+.activity .create-activity {
+  min-width: 200px;
+}
+.activity .search-icon,
+.activity .search-form__separator {
+  display: none !important; /* hide search icon and word "in" in activity page */
+}
+
 
 
 /**

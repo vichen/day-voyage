@@ -10,7 +10,6 @@ import { addToBuilder,
         editPrice,
         receiveBudget } from '../actions';
 import PlanBuilderItem from '../components/PlanBuilderItem';
-import CreateActivity from '../components/CreateActivity';
 import Maps from '../components/Maps';
 import FlatButton from 'material-ui/FlatButton';
 import { Card, CardText } from 'material-ui/Card';
@@ -24,28 +23,14 @@ class PlanBuilderContainer extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      modalOpen: false,
       budgeting: false
     };
   }
 
-  toggleModal() {
-    this.setState({
-      modalOpen: !this.state.modalOpen
-    });
-  }
 
   goToConfirm() {
     if (!!isLoggedIn()) {
       this.props.goToConfirm();
-    } else {
-      this.props.openSnackbar("Please sign in or create a profile to continue");
-    }
-  }
-
-  openCreate() {
-    if (!!isLoggedIn()) {
-      this.toggleModal();
     } else {
       this.props.openSnackbar("Please sign in or create a profile to continue");
     }
@@ -119,15 +104,8 @@ class PlanBuilderContainer extends Component {
         </div>
         <h3 style={{marginLeft: 15}}>Itinerary</h3>
         <Card>
-          <CreateActivity
-            modal={this.state.modalOpen}
-            toggleModal={this.toggleModal.bind(this)}
-            openSnackbar={this.props.openSnackbar}
-            addFromCreate={(activity) => this.props.addToBuilder(activity)}
-            user_id={auth.user_id}/>
-          <FlatButton
-            label="Create Own Activity"
-            onClick={this.openCreate.bind(this)} />
+          
+         
           <FlatButton
             label="Clear All"
             onClick={() => planBuilder.forEach(element => this.props.deleteFromBuilder(element))} />
