@@ -1,0 +1,346 @@
+body {
+  /*font-family: 'Metrophobic', Arial, serif;*/
+  font-weight: 400;
+  background: linear-gradient(to bottom, #f4fafb, #d0eaf1);
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  height: 100vh;
+  width: 100vw;
+}
+
+/**
+ * Navbar Styleing
+ */
+.app-navbar {
+  margin-bottom: 10px;
+  padding: 8px 32px;
+  background: transparent;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  /*box-shadow: 0 4px 6px rgba(0,0,0,.1);*/
+}
+.app-navbar__header {
+  flex: 1;
+  display: flex;
+}
+.app-navbar__header .app-title, 
+.app-navbar__header .app-title:active {
+  color: rgba(0,0,0,.7);
+  font-size: 24px;
+  letter-spacing: 1px;
+  text-decoration: none;
+}
+.app-navbar__header .app-title:hover,
+.app-navbar__header .app-title:focus {
+  color: rgba(0,0,0,.85);
+  text-decoration: none;
+}
+.app-navbar__actions {
+  display: flex;
+}
+
+/**
+ * Home Page
+ */
+.home {
+  margin-top: 48px;
+  padding: 64px 16px;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: 8px;
+  background: rgba(255,255,255,.8);
+}
+.home__tagline {
+  margin-bottom: 80px;
+  color: #424242;
+  font-size: 48px;
+} 
+.home .search__call-to-action {
+  display: flex;
+}
+.home__background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  width: 100vw;
+  height: 100vh;
+  background-image: url("http://imgh.us/landmarks.svg"), linear-gradient(to bottom, #f4fafb, #d0eaf1);  
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center bottom;
+}
+
+/**
+ * Search Component
+ */
+
+.search {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.search-form {
+  display: flex;
+  flex-direction: column;
+}
+.search-form__inputs {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  align-items: center;
+}
+.search-form__activity-input {
+  margin-left: 18px;
+  flex: 1 1 300px;
+}
+.search-form__separator {
+  height: 100%;
+  margin-left: 36px;
+  margin-right: 36px;
+  font-size: 18px;
+}
+.search__location-checkbox {
+  margin-top: 4px;
+  width: 256px;
+  align-self: flex-end;
+}
+.search__call-to-action {
+  margin-top: 48px;
+  display: none;
+  justify-content: center;
+}
+.search__call-to-action .search-btn {
+  min-width: 250px;
+}
+@media (max-width: 749px) {
+  .search-form__inputs  { flex-direction: column; }
+  .search-form__activity-input { 
+    flex: 0 !important; 
+    margin-left: 0;
+    margin-bottom: 10px;
+  }
+  .search .search-btn,
+  .search-form__separator {
+    display: none;
+  }
+}
+
+
+/**
+ *  Activities Page
+ */
+.activities__toolbar {
+  display: flex;
+}
+.activities__toolbar .toolbar-separator {
+  margin: 0 10px;
+  width: 2px;
+  height: 20px;
+  border-right: 2px solid lightgrey;
+}
+/*.activities__toolbar .search-icon,
+*/
+.activities__toolbar .search-form__separator {
+  display: none !important;
+}
+@media (max-width: 749px) {
+  .activities__toolbar {
+    flex-direction: column-reverse;
+  }
+}
+
+.budget-field {
+  padding: 0px 15px 15px 0px;
+  height: 75%;
+  display: flex;
+  flex-flow: row;
+  flex-wrap: nowrap;
+  justify-content: space-around;
+  align-items: center;
+}
+
+/**
+* Button Groupings
+*/
+.planBuilder-btns {
+  padding: 15px;
+  display: flex;
+  flex-flow: row;
+  justify-content: space-between;
+}
+
+.create-activity-btns {
+  padding: 15px 15px 15px 0px;
+  width: 35%;
+  display: flex;
+  flex-flow: row;
+  justify-content: space-between;
+}
+
+
+.dashboard-plan-btns {
+  padding: 15px;
+  width: 50%;
+  display: flex;
+  flex-flow: row;
+  justify-content: space-around;
+}
+
+.confirm-budget-btn {
+  padding: 15px;
+  display: flex;
+  flex-flow: row;
+  justify-content: flex-end;
+}
+
+/**
+ * The geosuggest module
+ */
+.geosuggest {
+  font-family: Roboto, sans-serif;
+  font-size: 16px;
+  position: relative;
+  /*width: 50%;*/
+  /*margin: 1em auto;*/
+  text-align: left;
+}
+.geosuggest__input {
+  width: 100%;
+  border: none;
+  box-shadow: none;
+  border-bottom: 1px solid rgb(228,228,228);
+  padding-left: 2px;
+  padding-bottom: 4px;
+  -webkit-transition: border 0.2s, box-shadow 0.2s;
+          transition: border 0.2s, box-shadow 0.2s;
+}
+.geosuggest__input:focus {
+  border-color: #267dc0;
+  box-shadow: 0 0 0 transparent;
+}
+.geosuggest__suggests {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  max-height: 25em;
+  padding: 0;
+  margin-top: -1px;
+  background: #fff;
+  border: 2px solid #267dc0;
+  border-top-width: 0;
+  overflow-x: hidden;
+  overflow-y: auto;
+  list-style: none;
+  z-index: 5;
+  -webkit-transition: max-height 0.2s, border 0.2s;
+          transition: max-height 0.2s, border 0.2s;
+}
+.geosuggest__suggests--hidden {
+  max-height: 0;
+  overflow: hidden;
+  border-width: 0;
+  display: none;
+}
+
+/**
+ * A geosuggest item
+ */
+.geosuggest-item {
+  font-size: 18px;
+  font-size: 1rem;
+  padding: .5em .65em;
+  cursor: pointer;
+}
+.geosuggest-item:hover,
+.geosuggest-item:focus {
+  background: #f5f5f5;
+}
+.geosuggest-item--active {
+  background: #267dc0;
+  color: #fff;
+}
+.geosuggest-item--active:hover,
+.geosuggest-item--active:focus {
+  background: #ccc;
+}
+
+#main-tabs {
+  background: white;
+  width: 50%;
+}
+
+
+/**
+ * Item Card
+ */
+
+.item-card {
+  margin-left: 10;
+  margin-right: 10;
+  margin-bottom: 10;
+}
+.item-card > div {
+  display: flex;
+}
+
+.item-card .card-content { flex: 1; }
+.item-card .reorder-btns {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+}
+.item-card .hide-info-btn {
+  display: block !important;
+  margin-top: 15px !important;
+}
+
+.item-card .add-btn {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+}
+
+.dashboard-cards {
+  display: flex;
+  height: 100%;
+  flex-flow: column nowrap;
+  justify-content: space-between;
+}
+
+/**
+* Create Activity Category Dropdown
+*/
+
+.styled-select {
+    border: 1px solid #ccc;
+    width: 200px;
+    border-radius: 3px;
+    overflow: hidden;
+    background: #fafafa no-repeat 90% 50%;
+}
+
+.styled-select select {
+    padding: 5px 8px;
+    width: 130%;
+    border: none;
+    box-shadow: none;
+    background: transparent;
+    background-image: none;
+    -webkit-appearance: none;
+}
+
+.styled-select select:focus {
+    outline: none;
+}
+
+/**
+ *  Other Styles
+ */
+
