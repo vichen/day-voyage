@@ -1,5 +1,5 @@
-# Day Voyage
-where will your day take you?
+# [Day Voyage](https://www.dayvoyage.com)
+![Day Voyage Home](https://github.com/sweaty-figs/sweaty-figs/blob/master/README_IMGS/day-voyage-home.png)
 
 ## Team
 
@@ -28,7 +28,35 @@ For locals and travelers to build and share custom plans of fun things to do aro
 
 On a budget? Day Voyage helps tailor your plans to meet a budget of any size.
 
-## GIF goes here
+## Demos
+#### Search
+![Search](http://i.giphy.com/26vUNzMapDVWHKog0.gif)
+
+
+#### Filter
+![Filter](http://i.giphy.com/3o7qEaP74q1EvQG5m8.gif)
+
+
+#### Add to Plan
+![Add](http://i.giphy.com/26vUSLlFNqVkTmY2k.gif)
+
+
+#### Reorder Activities
+![Reorder](http://i.giphy.com/26vUEhFK7RPgt7DPO.gif)
+
+
+## Screen Casts
+#### Confirm Page
+<img src="https://github.com/sweaty-figs/sweaty-figs/blob/master/README_IMGS/day-voyage-confirm.png" width="450">
+
+
+#### Dashboard 
+<img src="https://github.com/sweaty-figs/sweaty-figs/blob/master/README_IMGS/day-voyage-dashboard.png" width="450">
+
+
+#### Shareable Plan Detail
+<img src="https://github.com/sweaty-figs/sweaty-figs/blob/master/README_IMGS/day-voyage-plan-detail.png" width="450">
+
 
 ## Up and running
 - Install dependencies
@@ -57,7 +85,7 @@ Please see this [repo](https://github.com/sweaty-figs/sweaty-figs-db) for inform
 ## Development
 
 To build webpack and generate a bundle:
-From within the root directory:
+From within the root directory:s
 ```sh
 npm start
 ```
@@ -82,12 +110,10 @@ To generate docs:
 ```sh
 npm start doc
 ```
-Refer to http://en.blog.koba04.com/2015/06/28/esdoc-documentation-for-react-and-es6/ for how to
-document
+Refer to http://en.blog.koba04.com/2015/06/28/esdoc-documentation-for-react-and-es6/ for how to write in-line documentation.
 
 ## Application Architecture
-
-Diagram of architecture goes here
+<img src="https://github.com/sweaty-figs/sweaty-figs/blob/master/README_IMGS/day-voyage-architecture.png" width="500">
 
 ## Unstacking the stack
 
