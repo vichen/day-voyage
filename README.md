@@ -75,7 +75,7 @@ npm start
 
 - React
 - Redux
-- Node 0.10.x // TODO: what version?
+- Node 5+
 - Webpack 1.11.0
 - Postgres 9.5.2.0
 - Nodal 0.1.0
@@ -177,9 +177,9 @@ The data powering our app
 ## Challenges
 Our team sailed through on calm seas!
 
-### Roadmap
+<!--### Roadmap-->
 
-View the project roadmap [here](LINK_TO_PROJECT_ISSUES)
+<!--View the project roadmap [here](LINK_TO_PROJECT_ISSUES)-->
 
 ## Contributing
 
