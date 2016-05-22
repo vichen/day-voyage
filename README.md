@@ -159,9 +159,9 @@ The data powering our app
 ###### [Day Voyage API](https://github.com/sweaty-figs/sweaty-figs-db)
 - Built with Nodal and Postgres
 - See linked repo for endpoints and schemas
-- **[Postgress](http://www.postgresql.org)**
+- **[Postgres](http://www.postgresql.org)**
   - Our solution for the relational nature of the data
-  - Recommended to use [Postgress.app](http://postgresapp.com) for mac users
+  - Recommended to use [Postgres.app](http://postgresapp.com) for mac users
 - **[Nodal](http://www.nodaljs.com)**
   - Our server interfacing with the Postgres instance
   - Separating our API from the application server decouples concerns of the cient and data
