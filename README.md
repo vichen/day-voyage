@@ -183,5 +183,5 @@ Our team sailed through on calm seas!
 
 ## Contributing
 
-See [CONTRIBUTING.md](CONTRIBUTING.md) for contribution guidelines.
+See [CONTRIBUTING.md](./_CONTRIBUTING.md) for contribution guidelines.
 
